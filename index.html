@@ -21,7 +21,7 @@
         </nav>
     </header>
     <main>
-        <h2 class="welcomeMsg">
+        <h2>
           Hi <span id="nama"></span>, Welcome To My Website
         </h2>
   
@@ -29,6 +29,7 @@
           var name = prompt("Masukan Nama Kamu");
           document.getElementById("nama").innerText = name;
         </script>
+
         <p>Ini adalah website latihan pertama</p>
         <img src="assets/foto.png" alt="foto revou" class="banner">
         <hr>
@@ -51,16 +52,51 @@
         <hr>
         <h2 id="message">Message Us</h2>
         <div>
-          <form class="input">  
-          Nama  : <input type="text" name="firstname"/> <br/><br/>
-          <label>Tanggal Lahir : </label>
-            <input type="date" name="party" /> <br/><br/>
-          <label for="gender">Jenis Kelamin  : </label>  
-            <input type="radio" id="gender" name="gender" value="male"/>Laki-laki  
-            <input type="radio" id="gender" name="gender" value="female"/>Perempuan <br/><br/>
-          Pesan :<br><textarea rows="6" cols="30"></textarea> <br/><br/>
-          <button class="submit" type="submit">Submit</button> 
-        </form>
+          <form class="input" name="inputpesan" onsubmit="return validation()">
+            <p>Nama:</p>
+            <input type="text" name="nama" placeholder="Nama"/>
+            <p>Tanggal Lahir:</p>
+            <input type="date" name="date" placeholder="Tanggal Lahir"/>
+            <p>Jenis Kelamin:</p>
+            <div>
+              <input type="radio" name="gender" id="" value="Laki-Laki"/>
+              <label class="label-opsiRadio" for="">Laki-Laki</label>
+            </div>
+            <div>
+              <input type="radio" name="gender" id="" value="Perempuan"/>
+              <label class="label-opsiRadio" for="">Perempuan</label>
+            </div>
+            <p>Pesan: </p>
+            <textarea name="pesan" id="" cols="30" rows="3" placeholder="Pesan"></textarea>
+            <input type="submit" id="submit" value="Submit">
+          </form>
+          
+          <script>
+            function validation(){
+              var nama = document.forms["inputpesan"]["nama"].value;
+              var date = document.forms["inputpesan"]["dat"].value;
+              var gender = document.forms["inputpesan"]["gender"].value;
+              var pesan = document.forms["inputpesan"]["pesan"].value;
+
+              if(nama == "" || date == "" || gender == "" || pesan == ""){
+                alert("Data harus Diisi");
+                return false;
+              }
+
+              document.getElementById("sender-name").innerText = nama;
+              document.getElementById("sender-date").innerText = date;
+              document.getElementById("sender-gender").innerText = gender;
+              document.getElementById("sender-pesan").innerText = pesan;
+              return false;
+            }
+          </script>
+          <div>
+            <p>Nama : <span id="sender-name"></span></p>
+            <p>Tanggal Lahir : <span id="sender-date"></span></p>
+            <p>Jenis Kelamin : <span id="sender-gender"></span></p>
+            <p>Pesan : <span id="sender-pesan"></span></p>
+          </div>
+        </div>
         </div>  
 
     </main>
